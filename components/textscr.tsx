@@ -13,14 +13,14 @@ const TextScroll = () => {
       if (!el) return;
 
       gsap.to(el, {
-        xPercent: i < 2 ? 100 : -100, // first 2 lines go right, last goes left
+        xPercent: i < 2 ? 100 : -100, // first 2 lines move right, last moves left
         ease: "none",
         scrollTrigger: {
-         trigger: el,
-         start: "top 90%",        // starts a bit later
-         end: "bottom -200%",     // longer scroll distance = slower movement
-         scrub: 1.5,                // smooth catch-up (1.5s)
-  },
+          trigger: el,
+          start: "top 90%",
+          end: "bottom -200%",
+          scrub: 1.5,
+        },
       });
     });
   }, []);
@@ -28,35 +28,38 @@ const TextScroll = () => {
   return (
     <section
       style={{
-        height: "100vh",
-        display: "flex",
-        flexDirection: "column",
-        justifyContent: "center",
-        alignItems: "center",
-        overflow: "hidden",
-        background: "#111",
-        color: "#fff",
+      height: "100vh",
+      display: "flex",
+      flexDirection: "column",
+      justifyContent: "center",
+      alignItems: "center",
+      overflow: "hidden",
+      background: "#f9eade",
       }}
     >
       {[
-        "🚀 What's Everyone Talking About — What's Everyone Talking About —",
-        "🌐 The Future is Here — The Future is Here — The Future is Here —",
-        "⚡ Join the Movement — Join the Movement — Join the Movement —",
-      ].map((text, i) => (
-        <div
-          key={i}
-          ref={(el) => {
-            if (el) textRefs.current[i] = el;
-          }}
-          style={{
-            whiteSpace: "nowrap",
-            fontSize: "3rem",
-            fontWeight: "bold",
-            margin: "1rem 0",
-          }}
-        >
-          {text}
-        </div>
+      { text: "WHAT'S", color: "black" },
+      { text: "EVERYONE", color: "#ee6530" },
+      { text: "TALKING", color: "black" },
+      ].map((item, i) => (
+      <div
+        key={i}
+        ref={(el) => {
+        if (el) textRefs.current[i] = el;
+        }}
+        style={{
+        whiteSpace: "nowrap",
+        fontSize: "13rem",
+        fontWeight: "bold",
+        margin: "1rem 0",
+        color: item.color,
+        fontFamily: "inherit",
+        letterSpacing: "0.05em",
+        textTransform: "uppercase",
+        }}
+      >
+        <b>{item.text}</b>
+      </div>
       ))}
     </section>
   );
